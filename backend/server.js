@@ -14,21 +14,22 @@ app.use(express.json());
 app.use(cors());
 
 // db connection
-connectDB();
+connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`Server Started on http://localhost:${port}`)
+    });
+});
 
 
 // API endpoints
 app.use("/api/food", foodRouter)
+app.use("/images", express.static('uploads'))
 
 
 
 app.get('/', (req, res) => {
     res.send("API WORKING")
 
-})
-
-app.listen(port, () => {
-    console.log(`Server Started on http://localhost:${port}`)
 })
 
 
