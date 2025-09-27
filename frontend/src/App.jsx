@@ -12,20 +12,20 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
-  <>
+    <>
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <> </>}
-        <div className='app'>
-          <Navbar setShowLogin={setShowLogin} />
-          <Routes>
-            < Route path='/' element={<Home />} />
-            <Route path='/Cart' element={<Cart />} />
-            <Route path='/Order' element={<PlaceOrder />} />
+      <div className='app'>
+        <Navbar setShowLogin={setShowLogin} />
+        <Routes>
+          < Route path='/' element={<Home />} />
+          <Route path='/Cart' element={<Cart />} />
+          <Route path='/Order' element={<PlaceOrder />} />
 
-          </Routes>
-        </div>
-        <Footer />
-      </>
+        </Routes>
+      </div>
+      <Footer />
+    </>
   )
 }
 
-      export default App
+export default App
