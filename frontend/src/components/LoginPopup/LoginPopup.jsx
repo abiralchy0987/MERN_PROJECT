@@ -43,7 +43,6 @@ const LoginPopup = ({ setShowLogin }) => {
         else {
             alert(response.data.message);
         }
-
     }
 
 
