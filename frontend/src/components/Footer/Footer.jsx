@@ -6,9 +6,9 @@ const Footer = () => {
         <div className='footer' id='footer'>
             <div className="footer-content">
                 <div className='footer-content-left'>
-                    <img src={assets} alt="" />
+                    <img src={assets.logo} alt="" />
                     <p>तपाईंको मनपर्ने खाना, ढोकामै पुर्‍याउँछौं। <br /> Your favorite food, delivered to your doorstep.</p>
-                    <div className="footer-social-icon">
+                    <div className="footer-social-icons">
                         <img src={assets.facebook_icon} alt="" />
                         <img src={assets.twitter_icon} alt="" />
                         <img src={assets.linkedin_icon} alt="" />
@@ -35,7 +35,6 @@ const Footer = () => {
             <p className="footer-copyright">
               Copyright &copy; 2023 Khajasathi.com - All rights reserved.
             </p>
-
         </div>
     )
 }

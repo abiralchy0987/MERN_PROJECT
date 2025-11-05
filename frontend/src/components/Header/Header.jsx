@@ -13,6 +13,5 @@ const Header = () => {
         </div>
     )
 }
-import './Header.css'
 
 export default Header

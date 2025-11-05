@@ -6,19 +6,19 @@
     font-weight: 500;
 
 }
-.app-dawnload-platforms{
+.app-download-platforms{
     display: flex;
     justify-content: center;
     gap: max(2vw,10px);
     margin-top: 40px;
 }
-.app-dawnload-platforms img{
+.app-download-platforms img{
     width: max(30vw,120px);
     max-width: 180px;
     transition: 0.5s;
     cursor: pointer;
 }
 
-.app-dawnload-platforms img:hover{
+.app-download-platforms img:hover{
     transform: scale(1.05);
 }

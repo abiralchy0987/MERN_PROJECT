@@ -59,9 +59,9 @@
 
 .login-popup-condition{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 8px;
-    margin-top: 15px;
+    margin-top: -15px;
 }
 .login-popup-condition input{
     margin-top: 5px;

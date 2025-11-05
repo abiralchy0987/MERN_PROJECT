@@ -1,21 +1,21 @@
-import React from 'react'
-import './Home.css'
+import React, { useState } from 'react'
 import Header from '../../components/Header/Header'
 import ExploreMenu from '../../components/ExploreMenu/ExploreMenu'
-import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
-import AppDownload from '../../components/AppDownload.jsx/AppDownload'
+import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
+import AppDownload from '../../components/AppDownload/AppDownload';
 
+const Home = () => {
 
-const home = () => {
-    const[category, setCategory] = React.useState("ALL")
+  const [category, setCategory] = useState("ALL");
+
   return (
     <div>
-      <Header />
-      <ExploreMenu category={category} setCategory={setCategory}/>
-      <FoodDisplay category={category} />
-    <AppDownload />
+        <Header />
+        <ExploreMenu category={category} setCategory={setCategory} />
+        <FoodDisplay category={category} />
+        <AppDownload />
     </div>
   )
 }
 
-export default home
+export default Home
