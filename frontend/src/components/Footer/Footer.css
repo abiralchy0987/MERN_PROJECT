@@ -15,6 +15,13 @@
     grid-template-columns: 2fr 1fr 1fr;
     gap: 80px;
 }
+.footer-content-left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+
 .footer-content-left, .footer-content-right, .footer-content-center{
     display: flex;
     flex-direction: column;
@@ -35,9 +42,23 @@
 }
 
 .footer-social-icons{
-    width: 40px;
-    margin-right: 15px;
+    display: flex;
+    flex-direction: row; /* keep icons horizontal */
+    align-items: center;
+    gap: 16px; /* horizontal space between icons; adjust as needed */
+    /* spacing around the icon group */
+    margin-top: 12px; /* space from the paragraph above */
+    margin-bottom: 18px; /* space before the hr/divider */
+    margin-left: 6px; /* small indent to align nicely with text */
+}
 
+/* ensure icon images are consistent size and aligned */
+.footer-social-icons img{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 6px; /* optional inner spacing so circles look balanced */
 }
 .footer hr{
     width: 100%;
