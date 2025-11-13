@@ -6,10 +6,10 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-//placeing user order for frontend
-const placeOrder = async (req, res)=>{
-    // const frontend_Url = req.get('origin');
-    const frontend_Url = "http://localhost:5175";
+//placing user order for frontend
+const placeOrder = async (req, res) => {
+
+    const frontend_Url = process.env.FRONTEND_URL || req.get('origin');
 try {
     // use authenticated user id from auth middleware (req.userId)
     const  newOrder = new orderModel({

@@ -8,7 +8,7 @@ const Navbar = ({setShowLogin}) => {
 
   const [menu, setMenu] = useState("home");
 
-  const { getTotalCartAmount, token, setToken, setSearchTerm } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken, setSearchTerm, user } = useContext(StoreContext);
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -91,6 +91,14 @@ useEffect(() => {
         :<div className="navbar-profile">
             <img src={assets.profile_icon} alt="" />
             <ul className="nav-profile-dropdown">
+              {/* show user details when available */}
+              {user ? (
+                <li style={{ flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>
+                  <strong style={{ fontSize: 14 }}>{user.name}</strong>
+                  <small style={{ fontSize: 12, color: '#666' }}>{user.email}</small>
+                  {user.phone ? <small style={{ fontSize: 12, color: '#666' }}>{user.phone}</small> : null}
+                </li>
+              ) : null}
               <li onClick={() => navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
               <hr />
               <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>

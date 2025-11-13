@@ -19,7 +19,21 @@ const FoodItem = ({ id, name, price, description, image }) => {
       {/* Container for image and add/remove controls */}
       <div className="food-item-img-container">
         {/* Show food image using backend URL + image filename */}
-        <img className="food-item-image" src={url + "/images/" + image} alt="" />
+        <img
+          className="food-item-image"
+          src={(() => {
+            // treat literal 'undefined' as missing
+            const isValid = image && image !== "undefined";
+            if (!isValid) return assets.food_1;
+            if (image.startsWith("http")) return image;
+            return `${url}/images/${image}`;
+          })()}
+          alt={name}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = assets.food_1;
+          }}
+        />
 
         {/* Conditional: if not in cart show single add button */}
         {!cartItems[id] ? (

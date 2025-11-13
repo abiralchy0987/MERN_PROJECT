@@ -15,11 +15,10 @@ const FoodDisplay = ({ category }) => {
         {food_list.map((item, index) => {
           const itemCategory = (item.category || "").toString().trim().toLowerCase();
           const name = (item.name || "").toString().toLowerCase();
-          const desc = (item.description || "").toString().toLowerCase();
 
-          // If there's a search query, show items that match (case-insensitive substring)
+          // If there's a search query, show items that match by name or category only
           if (q) {
-            const directMatch = name.includes(q) || itemCategory.includes(q) || desc.includes(q);
+            const directMatch = name.includes(q) || itemCategory.includes(q);
             // fuzzy matching removed — use direct substring match only
             if (directMatch) {
               return (
@@ -29,7 +28,7 @@ const FoodDisplay = ({ category }) => {
                   name={item.name}
                   description={item.description}
                   price={item.price}
-                  image={item.image}
+                  image={item.imageUrl || item.image}
                 />
               );
             }
@@ -45,7 +44,7 @@ const FoodDisplay = ({ category }) => {
                 name={item.name}
                 description={item.description}
                 price={item.price}
-                image={item.image}
+                image={item.imageUrl || item.image}
               />
             );
           }

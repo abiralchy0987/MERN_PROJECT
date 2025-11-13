@@ -1,5 +1,7 @@
 import foodModel from "../models/foodModel.js";
 import fs from "fs";
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 //add food item
 const addFood = async (req, res) => {
@@ -26,7 +28,47 @@ const addFood = async (req, res) => {
 const listFood = async (req, res) => {
   try {
     const foods = await foodModel.find({});
-    res.json({ success: true, data: foods });
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const uploadsDir = path.join(__dirname, '..', 'uploads');
+    const host = req.protocol + '://' + req.get('host');
+
+    // list files on disk once
+    let filesOnDisk = [];
+    try {
+      filesOnDisk = fs.readdirSync(uploadsDir);
+    } catch (err) {
+      // ignore; filesOnDisk stays empty
+      filesOnDisk = [];
+    }
+
+    const mapped = foods.map((f) => {
+      const obj = f.toObject ? f.toObject() : { ...f };
+      const img = obj.image;
+      let imageUrl = null;
+
+      if (img) {
+        // if exact file exists, use it
+        if (filesOnDisk.includes(img)) {
+          imageUrl = `${host}/images/${img}`;
+        } else {
+          // try to find a file that ends with `-food_N.png` where N matches img's suffix
+          const match = img.match(/food_?(\d+)\.png$/i);
+          if (match) {
+            const n = match[1];
+            const alt = filesOnDisk.find((fn) => fn.toLowerCase().endsWith(`-food_${n}.png`));
+            if (alt) imageUrl = `${host}/images/${alt}`;
+          }
+        }
+      }
+
+      // if no image found, leave imageUrl null so client falls back to local asset
+      if (!imageUrl) imageUrl = null;
+
+      return { ...obj, imageUrl };
+    });
+
+    res.json({ success: true, data: mapped });
   } catch (error) {
     console.log(error);
     res
